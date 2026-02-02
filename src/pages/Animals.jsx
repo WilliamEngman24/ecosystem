@@ -1,7 +1,6 @@
 //useEffect, state(in it save post data),loading and error, fetch API data
 
 import FetchData from '../service/FetchData';
-import React from 'react'
 
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
@@ -29,7 +28,7 @@ function Animals() {
 
     return(
         <>
-        <h2>Animals</h2>
+        <h1>Animals</h1>
 
         <input 
             type="text" 
