@@ -1,6 +1,6 @@
 import FetchData from '../service/FetchData';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function OverlayForEcosystem({onAdd, onClose}) {
 
@@ -18,10 +18,10 @@ function OverlayForEcosystem({onAdd, onClose}) {
         setTriggerFetch(false);
     }, [triggerFetch]);
 
-    const handleAdd = () => {
-        if(!animals) return;
+    const handleAdd = (selectedAnimal) => {
+        if(!selectedAnimal) return;
         {/*Function from parent, passes onto parent*/}
-        onAdd(animals);
+        onAdd(selectedAnimal);
         onClose();
     }
 
@@ -43,11 +43,11 @@ function OverlayForEcosystem({onAdd, onClose}) {
                 {error && <p>Error, API fail</p>}
 
                 <ul>
-            {animals.map(animals => (
+            {animals.map(animal => (
                 //this API does not provide an id, so use name instead
-                <li key={animals.name}>
-                    <button onClick={handleAdd}
-                    >Add: {animals.name}</button>
+                <li key={animal.name}>
+                    <button onClick={() => handleAdd(animal)}
+                    >Add: {animal.name}</button>
                 </li>))
             }
 

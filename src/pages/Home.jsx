@@ -35,6 +35,7 @@ function Home() {
 
         <ul>
           {herbivores.map((herbivores, index) => (
+            console.log(herbivores),
             <li key={index}>{herbivores.name}</li>
           ))}
         </ul>
