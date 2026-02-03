@@ -13,9 +13,21 @@ function Animals() {
     useEffect(() => {
         if (!triggerFetch) return;
 
-        FetchData(searchTerm, setAnimals, setLoading, setError);
+        setLoading(true);
+        setError(null);
 
-        setTriggerFetch(false);
+        FetchData(searchTerm)
+        .then((data) => {
+            setAnimals(data);
+        })
+        .catch((error) => {
+            setError(error.message);
+        })
+        .finally(()=> {
+            setLoading(false);
+            setTriggerFetch(false);
+        });
+
     }, [triggerFetch]);
 
     if(error) {
@@ -36,14 +48,16 @@ function Animals() {
         />
         <button onClick={() => setTriggerFetch(true)}>SEARCH</button>
 
-        {loading ? <p>Waiting...</p> : null}
+        {loading ? <p>Loading...</p> : null}
         <ul>
             {animals.map(animal => (
                 //this API does not prove an id, so use name instead
                 <li key={animal.name}>
                     <button
-                    onClick={() => navigate(`/animals/${animal.name}`)}                    
-                >{animal.name}</button>
+                    onClick={() => navigate(`/animals/${animal.name}`,{
+                        state: animal} //pass the data of animal to it's page
+                    )}
+                    >{animal.name}</button>
                 </li>))
             }
 

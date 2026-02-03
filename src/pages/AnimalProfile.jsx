@@ -1,5 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import FetchData from "../service/FetchData";
 
 const AnimalProfile = () => {
@@ -7,34 +7,32 @@ const AnimalProfile = () => {
     const { id } = useParams();
     const { state } = useLocation();
 
-    const [animals, setAnimals] = useState(state || null);
-    const [animal, setAnimal] = useState(null);
+    const [animal, setAnimal] = useState(state || null);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        //if directly accessing page (not coming from Animals page)
-        if (!animals) {
-            FetchData(id, setAnimals, setLoading, setError);
-        }
-    }, []);
-
-    useEffect(() => {
-        if(animals && animals.length > 0) {
-            const correctAnimal = animals.find(currentAnimal => 
-                currentAnimal.name.toLowerCase() === id.toLowerCase()
-            );
-
-            if(correctAnimal) {
-                setAnimal(correctAnimal);
-            }
-        }
         //if coming from Animals page, use passed data
-        else {
-            setAnimal(animals);
-        }
-    }, [animals]);
+        if(animal)  return;
+
+        setLoading(true);
+
+        //if directly accessing page (not coming from Animals page
+        FetchData(id)
+
+        //data with mutliple animals, need to get the right one
+        .then (data => {
+            const correctAnimal =
+            data.find(a => a.name.toLowerCase() === id.toLowerCase())
+            || data[0];
+
+            setAnimal(correctAnimal);
+        })
+        .catch(err => setError(err.message))
+        .finally(() => setLoading(false));
+
+    }, [animal, id]);
 
     if(loading) {
         return <p>Loading...</p>
@@ -46,11 +44,7 @@ const AnimalProfile = () => {
         return <p>No available data.</p>
     }
 
-    console.log(animal);
-    let showPredators = false;
-    if(animal.characteristics.predators != null) {
-        showPredators = true;
-    }
+    let showPredators = animal.characteristics?.predators != null;
 
     return (
         <>

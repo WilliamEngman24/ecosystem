@@ -13,9 +13,21 @@ function OverlayForEcosystem({onAdd, onClose}) {
     useEffect(() => {
         if (!triggerFetch) return;
 
-        FetchData(searchTerm, setAnimals, setLoading, setError);
+        setLoading(true);
+        setError(null);
 
-        setTriggerFetch(false);
+        FetchData(searchTerm)
+        .then((data) => {
+            setAnimals(data);
+        })
+        .catch((error) => {
+            setError(error.message);
+        })
+        .finally(()=> {
+            setLoading(false);
+            setTriggerFetch(false);
+        });
+
     }, [triggerFetch]);
 
     const handleAdd = (selectedAnimal) => {

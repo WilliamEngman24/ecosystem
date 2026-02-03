@@ -56,3 +56,21 @@ See: Animals.jsx, OverlayForEcosystem.jsx and FetchData.jsx
 
 - [x] "Hämtad data ska användas och visas i användargränssnittet."
     - The Data from FetchData is represented in both Home.jsx and more prominelty in AnimalProfile
+
+
+**VG Additional Criteria**
+
+**Structure and Motivation**
+- [x] "Tydlig filstruktur (t.ex. pages/, components/, services/)"
+    - The project has been divided into the following files:
+        - components
+        - layout
+        - pages
+        - service
+
+- [] "En sektion i README (minst 150 ord): “Tekniska val - reflektion” där du visar extra förståelse för dina tekniska beslut genom att du motiverar: mapp och filstruktur, Routing-upplägg, Komponentindelning, Props-lösning, State-lösning och varför du valt det API du valt"
+    - This is the README file inwhich i aim to showcase that
+
+**Extra Improvments**
+- [x] "Välj minst 1 av dessa: Du har en “parameter” och (useParams) lösning i din kod (t.ex. /items/:id)"
+    - In 

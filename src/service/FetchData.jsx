@@ -1,36 +1,21 @@
-import React from 'react'
 
-function FetchData(animalName, setAnimal, setLoading, setError) {
+async function FetchData(animalName) {
 
     const baseURL = 'https://api.api-ninjas.com/v1/animals';
 
     const apiKey = "eoSJvRbe5an0HtFWXHkKgYbAw0Yq2DzGIIUUE1uH";
-
-    setLoading(true);
     
-    fetch(`${baseURL}?name=${encodeURIComponent(animalName)}`, {
-            headers: {
-                'X-Api-Key': apiKey,
-            },
-        }
-    )
-    .then((res) => {
-        if(!res.ok){
-            throw new Error("Request failed with status " + res.status)
-        }
-        return res.json();
-    })
-
-    .then((data) => {
-        console.log("called this data: ", data);
-        setAnimal(data);
-        setLoading(false);
-    })
-
-    .catch((err) =>{
-        setError(err.message);
-        setLoading(false);
+    const res = await fetch(`${baseURL}?name=${encodeURIComponent(animalName)}`, {
+        headers: {
+            'X-Api-Key': apiKey,
+        },
     });
+
+    if(!res.ok){
+        throw new Error("Request failed with status " + res.status)
+    }
+
+    return res.json();
 }
 
 export default FetchData
