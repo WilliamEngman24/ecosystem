@@ -1,5 +1,3 @@
-//useEffect, state(in it save post data),loading and error, fetch API data
-
 import FetchData from '../service/FetchData';
 
 import { useState, useEffect } from 'react'
@@ -7,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Animals() {
     const [animals, setAnimals] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [triggerFetch, setTriggerFetch] = useState(false);    
@@ -40,14 +38,14 @@ function Animals() {
 
         {loading ? <p>Waiting...</p> : null}
         <ul>
-            {animals.map(animals => (
+            {animals.map(animal => (
                 //this API does not prove an id, so use name instead
-                <li key={animals.name}>
+                <li key={animal.name}>
                     <button
-                    onClick={() => navigate(`/animals/${animals.name}`,{
-                        state: animals} //pass the data of animal to it's page
+                    onClick={() => navigate(`/animals/${animal.name}`,{
+                        state: animal} //pass the data of animal to it's page
                     )}
-                    >{animals.name}</button>
+                    >{animal.name}</button>
                 </li>))
             }
 

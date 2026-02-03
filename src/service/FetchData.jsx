@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FetchData(animalName, setPosts, setLoading, setError) {
+function FetchData(animalName, setAnimal, setLoading, setError) {
 
     const baseURL = 'https://api.api-ninjas.com/v1/animals';
 
@@ -22,7 +22,7 @@ function FetchData(animalName, setPosts, setLoading, setError) {
     })
 
     .then((data) => {
-        setPosts(data);
+        setAnimal(data);
         setLoading(false);
     })
 

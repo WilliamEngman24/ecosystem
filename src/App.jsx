@@ -8,7 +8,6 @@ import AnimalProfile from './pages/AnimalProfile'
 import Animals from './pages/Animals'
 
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
 
 //add posts-route and post.jsx, 
 function App() {

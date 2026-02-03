@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 function OverlayForEcosystem({onAdd, onClose}) {
 
     const [animals, setAnimals] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [triggerFetch, setTriggerFetch] = useState(false); 

@@ -9,20 +9,18 @@ function Home() {
   const [dietType, setDietType] = useState("");
   const [overlayOn, setOverlayOn] = useState(false);
 
-  const addAnimal = (animalName) => {
+  const addAnimal = (animalObject) => {
     {/*React requires immutability, need latest state value for safety*/}
     if(dietType === "herbivore") 
       {
-        setHerbivores(prev => [...prev, animalName]);
+        setHerbivores(prev => [...prev, animalObject]);
       }
 
     if(dietType === "carnivore") 
       {
-        setCarnivores(prev => [...prev, animalName]);
+        setCarnivores(prev => [...prev, animalObject]);
       }
-
-    setOverlayOn(false);
-    setDietType(null);
+    setDietType("");
   }
   return (
     <>
@@ -34,9 +32,9 @@ function Home() {
         {herbivores.length === 0 && <p>Add some animals!</p>}
 
         <ul>
-          {herbivores.map((herbivores, index) => (
-            console.log(herbivores),
-            <li key={index}>{herbivores.name}</li>
+          {herbivores.map((animal, index) => (
+            console.log(animal),
+            <li key={index}>{animal.name}</li>
           ))}
         </ul>
         <button onClick={() => {
@@ -51,8 +49,8 @@ function Home() {
         {carnivores.length === 0 && <p>Add some animals!</p>}
 
         <ul>
-          {carnivores.map((carnivores, index) => (
-            <li key={index}>{carnivores.name}</li>
+          {carnivores.map((animal, index) => (
+            <li key={index}>{animal.name}</li>
           ))}
         </ul>
         <button onClick={() => {
