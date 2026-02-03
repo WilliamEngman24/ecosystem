@@ -9,7 +9,7 @@ import Animals from './pages/Animals'
 
 import { Routes, Route } from 'react-router-dom'
 
-//add posts-route and post.jsx, 
+
 function App() {
 
   return (

@@ -1,18 +1,55 @@
-import React from 'react'
-
-import { useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import { useState, useEffect, use } from "react";
+import FetchData from "../service/FetchData";
 
 const AnimalProfile = () => {
 
-    const {state: animal} = useLocation();
+    const { id } = useParams();
+    const { state } = useLocation();
 
+    const [animals, setAnimals] = useState(state || null);
+    const [animal, setAnimal] = useState(null);
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        //if directly accessing page (not coming from Animals page)
+        if (!animals) {
+            FetchData(id, setAnimals, setLoading, setError);
+        }
+    }, []);
+
+    useEffect(() => {
+        if(animals && animals.length > 0) {
+            const correctAnimal = animals.find(currentAnimal => 
+                currentAnimal.name.toLowerCase() === id.toLowerCase()
+            );
+
+            if(correctAnimal) {
+                setAnimal(correctAnimal);
+            }
+        }
+        //if coming from Animals page, use passed data
+        else {
+            setAnimal(animals);
+        }
+    }, [animals]);
+
+    if(loading) {
+        return <p>Loading...</p>
+    }
+    if(error) {
+        return <p>Error loading animal.</p>
+    }
     if(!animal) {
         return <p>No available data.</p>
     }
 
-    let showPredidors = false;
+    console.log(animal);
+    let showPredators = false;
     if(animal.characteristics.predators != null) {
-        showPredidors = true;
+        showPredators = true;
     }
 
     return (
@@ -39,7 +76,7 @@ const AnimalProfile = () => {
         <h3>Main prey: {animal.characteristics.main_prey || animal.characteristics.prey}</h3>
 
         {/*short circuit rendering*/}
-        {showPredidors && (
+        {showPredators && (
             <h3>Predators: {animal.characteristics.predators}</h3>
             )
         }

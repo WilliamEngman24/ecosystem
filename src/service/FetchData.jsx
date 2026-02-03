@@ -22,6 +22,7 @@ function FetchData(animalName, setAnimal, setLoading, setError) {
     })
 
     .then((data) => {
+        console.log("called this data: ", data);
         setAnimal(data);
         setLoading(false);
     })

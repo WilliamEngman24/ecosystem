@@ -42,10 +42,8 @@ function Animals() {
                 //this API does not prove an id, so use name instead
                 <li key={animal.name}>
                     <button
-                    onClick={() => navigate(`/animals/${animal.name}`,{
-                        state: animal} //pass the data of animal to it's page
-                    )}
-                    >{animal.name}</button>
+                    onClick={() => navigate(`/animals/${animal.name}`)}                    
+                >{animal.name}</button>
                 </li>))
             }
 
