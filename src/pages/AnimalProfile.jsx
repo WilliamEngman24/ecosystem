@@ -18,6 +18,8 @@ const AnimalProfile = () => {
 
         setLoading(true);
 
+        console.log("Used Params")
+
         //if directly accessing page (not coming from Animals page
         FetchData(id)
 
