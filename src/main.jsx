@@ -5,9 +5,11 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
+  //Temporarily disable strict mode for dev
+  <BrowserRouter>
     <App />
     </BrowserRouter>
-  </StrictMode>,
+  //<StrictMode>
+    
+  //</StrictMode>,
 )
