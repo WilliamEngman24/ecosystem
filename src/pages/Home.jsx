@@ -1,8 +1,8 @@
-import OverlayForEcosystem from "../components/OverlayForEcosystem";
+import EcosystemShowcase from "../components/EcosystemShowcase";
 
-import { EcosystemEvaluation } from "../service/EcosystemEvaluation";
+import useEvaluation from "../hooks/useEvaluation";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Home() {
 
@@ -11,17 +11,8 @@ function Home() {
   const [dietType, setDietType] = useState("");
   const [overlayOn, setOverlayOn] = useState(false);
 
-  const [ecoStatus, setEcoStatus] = useState(null);
-  const [ecoProblems, setEcoProblems] = useState([]);
-
-  useEffect(()=> {
-
-    const result = EcosystemEvaluation(carnivores, herbivores);
-
-    setEcoProblems(result.problems);
-    setEcoStatus(result.status);
-    
-  }, [herbivores, carnivores]);
+  //uses states from hook
+  const { ecoStatus, ecoProblems } = useEvaluation(carnivores, herbivores);
 
   const addAnimal = (animalObject) => {
     {/*React requires immutability, need latest state value for safety*/}
@@ -37,77 +28,31 @@ function Home() {
     setDietType("");
   }
 
-  const removeAnimal = (animalName, listType) => {
+  const removeAnimal = (animalName, typeOfAnimal) => {
 
-    if(listType === "herbivore") {
+    if(typeOfAnimal === "herbivore") {
       setHerbivores (prev => prev.filter(animal => animal.name !== animalName));
     }
-    if(listType === "carnivore") {
+    if(typeOfAnimal === "carnivore") {
       setCarnivores (prev => prev.filter(animal => animal.name !== animalName));
     }
   }
 
   return (
     <>
-    <h1>Ecosystem</h1>
+      <h1>Ecosystem</h1>
 
-    <h2>Ecosystem status: {
-    ecoStatus === null ? "No inhabitants" :
-    ecoStatus ? "Functional!" : "Unstable!"}
-    </h2>
-
-    {ecoStatus === false && ecoProblems.length > 0 && (
-      <ul>
-        {ecoProblems.map((problems, index) => (
-          <li key={index}>{problems}</li>
-        ))}
-      </ul>
-    )}
-
-    <section>
-      <article>
-        <h2>Herbivores</h2>
-        {herbivores.length === 0 && <p>Add some animals!</p>}
-
-        <ul>
-          {herbivores.map((animal, index) => (
-            <li key={index}>
-              <button onClick={() => removeAnimal(animal.name, "herbivore")}>{animal.name}</button>
-            </li>
-          ))}
-        </ul>
-        <button onClick={() => {
-          setDietType("herbivore");
-          setOverlayOn(true)}}>
-          Add Animal
-        </button>
-      </article>
-
-      <article>
-        <h2>Carnivores</h2>
-        {carnivores.length === 0 && <p>Add some animals!</p>}
-
-        <ul>
-          {carnivores.map((animal, index) => (
-            <li key={index}>
-              <button onClick={() => removeAnimal(animal.name, "carnivore")}>{animal.name}</button>
-            </li>
-          ))}
-        </ul>
-        <button onClick={() => {
-          setDietType("carnivore");
-          setOverlayOn(true)}}>
-          Add Animal
-        </button>
-      </article>
-
-      {overlayOn && (
-        <OverlayForEcosystem
-          onAdd = {addAnimal}
-          onClose = {() => setOverlayOn(false)} 
-        />
-      )}
-    </section>
+      <EcosystemShowcase
+        herbivores = {herbivores}
+        carnivores = {carnivores}
+        ecoStatus =  {ecoStatus}
+        ecoProblems = {ecoProblems}
+        addAnimal = {addAnimal}
+        removeAnimal = {removeAnimal}
+        setDietType = {setDietType}
+        overlayOn = {overlayOn}
+        setOverlayOn = {setOverlayOn}
+      />
     </>
   )
 }

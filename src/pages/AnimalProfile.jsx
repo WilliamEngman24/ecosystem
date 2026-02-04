@@ -14,7 +14,10 @@ const AnimalProfile = () => {
 
     useEffect(() => {
         //if coming from Animals page, use passed data
-        if(animal)  return;
+        if(animal) {
+            console.log("Used Location");
+            return;
+        }  
 
         setLoading(true);
 
@@ -34,7 +37,7 @@ const AnimalProfile = () => {
         .catch(err => setError(err.message))
         .finally(() => setLoading(false));
 
-    }, [animal, id]);
+    }, []);
 
     if(loading) {
         return <p>Loading...</p>

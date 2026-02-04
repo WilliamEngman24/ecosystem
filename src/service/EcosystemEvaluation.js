@@ -60,3 +60,5 @@ export function EcosystemEvaluation(carnivores, herbivores) {
         problems
     };
 }
+
+export default EcosystemEvaluation
