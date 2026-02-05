@@ -94,10 +94,14 @@ See: Animals.jsx, OverlayForEcosystem.jsx and FetchData.jsx
         - layout
         - pages
         - service
+        - hooks
 
-- [] "En sektion i README (minst 150 ord): “Tekniska val - reflektion” där du visar extra förståelse för dina tekniska beslut genom att du motiverar: mapp och filstruktur, Routing-upplägg, Komponentindelning, Props-lösning, State-lösning och varför du valt det API du valt"
-    - This is the README file inwhich i aim to showcase that
+- [x] "En sektion i README (minst 150 ord): “Tekniska val - reflektion” där du visar extra förståelse för dina tekniska beslut genom att du motiverar: mapp och filstruktur, Routing-upplägg, Komponentindelning, Props-lösning, State-lösning och varför du valt det API du valt"
+    - Information is displayed at the top of the page.
 
 **Extra Improvments**
 - [x] "Välj minst 1 av dessa: Du har en “parameter” och (useParams) lösning i din kod (t.ex. /items/:id)"
-    - In 
+    - In Animals I locate to AnimalProfile using the routing layout in App.jsx. In AnimalProfile I use Params as an option to retreive data from an API if one has arrived directly through the URL and avoiding the Animals page (incase I pass the data and use Location in the AnimalProfile page).
+
+- [x] "Extra UI-funktion (exempel: sortering, pagination)"
+    - I implimented EcosystemEvaluation and depending on the animals that are added to the ecosystem, EcosystemShowcase will display varying information regarding the functionality or lacking animals in the ecosystem to make it functional.  
