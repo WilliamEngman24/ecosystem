@@ -21,7 +21,6 @@ function App() {
         <Route path="animals" element={<Animals />}/>
         <Route path="animals/:id" element={<AnimalProfile />}/>
       </Route>
-
       <Route path="*" element={<NotFound />}/>
     </Routes>
     </>

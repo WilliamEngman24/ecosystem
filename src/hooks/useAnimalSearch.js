@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FetchData from "../service/FetchData";
+import FetchData from "../services/FetchData";
 
 export function useAnimalSearch() {
 

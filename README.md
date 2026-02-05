@@ -1,8 +1,35 @@
 **Assignment**
 
+**Technical choices - Reflection**
+- File structure
+    - The app is devided into; pages, components, hooks, service and layout. The reason for the division for there to be a place for views, resuable components, hooks with states and some logic, a purely logic based file and a place for layouts.
+
+        - Pages; contains the views of the app and relies on App.jsx, MainLayout.jsx and Navigation.jsx for interactablity and display.
+        - Components; contains rendering and reuseable material for pages and other components. 
+        - Hooks; contains states and logic for pages and components. useAnimalSearch is both used by the ContainerSearchAndList(component) and Animals(page)
+        - Service; contains pure logic that is used by both hooks and directly by AnimalProfile.
+        - layout; contains the pattern for navigation and the dynamic showcasing of the different pages
+
+- Routing
+    - The routing of the app is divided into App.jsx, MainLayout.jsx and Navigation.jsx
+
+        - App; Defines all paths, connects URLs to the pages/views and creates a layout for nested routing. 
+        - MainLayout; Decides which child route should have its component/view rendered and decides the layout of the whole app
+        - Navigation: Displays pages, changes the URL and lets the page change without reloading it. Navlink keeps track of which page is active. 
+
+- Component division
+    - (example) Both OverlayForEcosystem and Animals(page) uses ContainerSearchAndList. Said component is divided into SearchFieldAndButton and SearchList. SearchList uses ItemCard.
+
+- Props/State solution
+    - (example) Animals pass a cardEffect prop to ContainerSearchAndList. The Container uses a hook (useAnimalSearch) to store information about search result and the logic used to preform it. The Continer passes states from the hook to SearchFeildAndButton, which then sends back information from the input feild and sets the trigger state to true (through a funtion when the button is clicked). Because the trigger state is true, the handler fetches the data from FetchData(using the API) and the hook returns the data and proccess information to the Container. The Container passes the cardEffect and the fetched data to SearchList. The List creates ItemCards depending on the amount of objects in the passeed data and each ItemCard gets the cardEffect and data of a specific animal. When ItemCard(button) is pressed, the cardEffect function is activated with the data of the animal as a parameter. In the case of Animals, the cardEffect changes the URL and passes the data of the animal onto the AnimalProfile page of the specific animal, dynamically reached through "<Route path="animals/:id" element={<AnimalProfile />}/>".
+
+- API https://api-ninjas.com/api/animals
+    - I wanted to make an applicaiton that would have its own data interact with itself. I chose this API because it specifically had "prey" and "predators" as feilds. These two feilds are used in EcosystemEvaluation.js to check if the current animals in the ecosystem makes the ecosystem functional or not. Depending on the results the app will display information on both herbivores and carnivores regarding a lack of predators or prey. 
+
+
 This is an Ecosystem application that:
 - Displays animals and their information
-- Allows the user to make a simple ecosystem
+- Allows the user to make a simple ecosystem and get information about what is lacking or if it functions.
 
 To start the application:
 - Download repo

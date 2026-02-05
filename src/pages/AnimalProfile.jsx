@@ -1,7 +1,7 @@
 import './AnimalProfile.css'
 import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import FetchData from "../service/FetchData";
+import FetchData from "../services/FetchData";
 
 const AnimalProfile = () => {
 

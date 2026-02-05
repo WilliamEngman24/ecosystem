@@ -1,4 +1,4 @@
-import EcosystemEvaluation from "../service/EcosystemEvaluation";
+import EcosystemEvaluation from "../services/EcosystemEvaluation";
 
 import { useEffect, useState } from "react";
 
