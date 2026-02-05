@@ -15,7 +15,7 @@ function Home() {
   const { ecoStatus, ecoProblems } = useEvaluation(carnivores, herbivores);
 
   const addAnimal = (animalObject) => {
-    {/*React requires immutability, need latest state value for safety*/}
+    //React requires immutability, need latest state value for safety
     if(dietType === "herbivore") 
       {
         setHerbivores(prev => [...prev, animalObject]);

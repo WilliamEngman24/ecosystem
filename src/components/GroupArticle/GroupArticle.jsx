@@ -1,13 +1,12 @@
-import ItemCard from "./ItemCard"
-
+import './GroupArticle.css'
 function GroupArticle({title, animalList, animalType, onRemoveAnimal, setDietType, setOverlayOn}) {
   return (
     <article>
         <h2>{title}</h2>
         {animalList.length === 0 && <p>Add some animals!</p>}
         <ul>
-          {animalList.map(animal => (
-            <li key={animal.name}>
+          {animalList.map((animal,index) => (
+            <li key={index}>
                 <button onClick={() => onRemoveAnimal(animal.name, animalType)}>
                     {animal.name}
                 </button>
@@ -24,9 +23,4 @@ function GroupArticle({title, animalList, animalType, onRemoveAnimal, setDietTyp
   )
 }
 
-
 export default GroupArticle
-
-{/*
-  
-  */}

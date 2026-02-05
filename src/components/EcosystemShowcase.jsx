@@ -1,5 +1,5 @@
-import OverlayForEcosystem from "./OverlayForEcosystem";
-import GroupArticle from "./GroupArticle"
+import OverlayForEcosystem from "./OverlayForEcosystem/OverlayForEcosystem";
+import GroupArticle from "./GroupArticle/GroupArticle"
 
 function EcosystemShowcase({
     herbivores,
@@ -21,8 +21,8 @@ function EcosystemShowcase({
 
         {ecoStatus === false && ecoProblems.length > 0 && (
         <ul>
-            {ecoProblems.map((problems, index) => (
-            <li key={index}>{problems}</li>
+            {ecoProblems.map((problem, index) => (
+            <li key={index}>{problem}</li>
             ))}
         </ul>
         )}

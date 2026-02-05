@@ -1,4 +1,5 @@
-import ItemCard from "./ItemCard";
+import './SearchList.css'
+import ItemCard from "../ItemCard";
 
 function SearchList({collection, onCardEffect}) {
     return(

@@ -37,3 +37,5 @@ export function useAnimalSearch() {
         triggerSearch: () => setTriggerFetch(true)
     };
 }
+
+export default useAnimalSearch;

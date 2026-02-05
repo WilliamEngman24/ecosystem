@@ -1,6 +1,6 @@
 import SearchFieldAndButton from "./SearchFieldAndButton";
-import SearchList from "./SearchList";
-import { useAnimalSearch } from "../hooks/useAnimalSearch";
+import SearchList from "./SearchList/SearchList";
+import useAnimalSearch from "../hooks/useAnimalSearch";
 
 function ContainerSearchAndList({onSelect}){
     const {

@@ -1,0 +1,10 @@
+.active{
+    font-weight: bold;
+    color: green;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}

@@ -1,7 +1,4 @@
 import ContainerSearchAndList from "../components/ContainerSearchAndList";
-import SearchFieldAndButton from "../components/SearchFieldAndButton";
-import SearchList from "../components/SearchList";
-import { useAnimalSearch } from "../hooks/useAnimalSearch";
 import { useNavigate } from "react-router-dom";
 
 function Animals() {

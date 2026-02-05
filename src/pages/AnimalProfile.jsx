@@ -1,3 +1,4 @@
+import './AnimalProfile.css'
 import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FetchData from "../service/FetchData";
@@ -37,13 +38,13 @@ const AnimalProfile = () => {
         .catch(err => setError(err.message))
         .finally(() => setLoading(false));
 
-    }, []);
+    }, [id, state]);
 
     if(loading) {
         return <p>Loading...</p>
     }
     if(error) {
-        return <p>Error loading animal.</p>
+        return <p>Error loading animal. Type of error : {error}</p>
     }
     if(!animal) {
         return <p>No available data.</p>
@@ -66,9 +67,11 @@ const AnimalProfile = () => {
 
         <br />
         <h2>Locations:</h2>
-        {animal.locations.map((locations, index) => (
-            <li key={index}>{locations}</li>
-        ))}
+        <ul>
+            {animal.locations.map((locations, index) => (
+                <li key={index}>{locations}</li>
+            ))}
+        </ul>
         <br />
 
         <h2>Characteristics:</h2>
@@ -80,7 +83,7 @@ const AnimalProfile = () => {
             )
         }
 
-        {/*Dynamic generation according to the content*/}
+        {/*Dynamic generation*/}
         {Object.entries(animal.characteristics).map(([key, value]) => {
             if(key !== "main_prey" && key !== "predators" && key !== "prey") {
                 return (
@@ -90,9 +93,7 @@ const AnimalProfile = () => {
                 )
             }})
         }
-
         <br />
-
         </>
   )
 }

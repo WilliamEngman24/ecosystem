@@ -56,8 +56,8 @@ export function EcosystemEvaluation(carnivores, herbivores) {
     });
 
     return {
-        status: problems.length === 0,
-        problems
+      status: problems.length === 0,
+      problems
     };
 }
 
